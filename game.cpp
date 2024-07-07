@@ -4,7 +4,7 @@ using namespace std;
 
 int trial = 0;
 
-string guess(int a, int z) {
+void guess(int a, int z) {
 
 
 
@@ -15,7 +15,7 @@ string guess(int a, int z) {
 		cin >> a;
 
 		guess(a, z);
-
+		trial += 1;
 	}
 
 
@@ -24,11 +24,11 @@ string guess(int a, int z) {
 
 		cout << "too high" << endl;
 
-		cout << "enter new number";
+		cout << "enter new number: ";
 
 		cin >> a;
 
-		trial++;
+		trial += 1;
 
 		guess(a, z);
 	}
@@ -37,7 +37,7 @@ string guess(int a, int z) {
 
 		cout << "too low" << endl;
 
-		cout << "enter new number";
+		cout << "enter new number: ";
 
 		cin >> a;
 
@@ -48,19 +48,26 @@ string guess(int a, int z) {
 	}
 
 	else if (a == z) {
-
-		return "correctly";
+		if (trial == 0) {
+			cout << "congratulations you got it from the first time";
+		}
+		else {
+			cout << "correctly" << endl << "you got it in " << trial + 1 << " times";
+		}
 	}
-	return ".";
-} 
+
+}
 int main() {
 
-	int x, y = 70;
-
+	int x, y ;
+	cout << "let your friend enter number for you to guess";
+	cin >> y;
+	cout << "\033[2J\033[1;1H";
+    cout << "Let's start\n";
 	cout << "guess a number between 1 and 100: ";
 
 	cin >> x;
 
-	cout << guess(x, y) << trial;
+	guess(x, y);
 	return 0;
 }
